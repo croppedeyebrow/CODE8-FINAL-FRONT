@@ -533,14 +533,14 @@ const CoperDetail01 = styled.div`
 `;
 
 const CoperMusicName = styled.div`
-  font-size: 2.5rem;
+  font-size: 1.6rem;
   font-weight: bold;
   display: flex;
   position: relative;
 `;
 
 const CoperName = styled.div`
-  font-size: 2.2rem;
+  font-size: 1.6rem;
   font-weight: bold;
   display: flex;
   position: relative;
@@ -599,8 +599,9 @@ const LyricsTitle = styled.div`
 const LyricsBox = styled.div`
   position: relative;
   display: flex;
-  width: 50rem;
-
+  width: 40rem;
+  padding-top: 4rem;
+  padding-left: 3rem;
   height: 102.5rem;
   font-family: "Noto Sans KR";
   font-style: normal;
@@ -608,7 +609,9 @@ const LyricsBox = styled.div`
   font-size: 1.5rem;
   line-height: 2.3rem;
   justify-content: center;
-  color: #000000;
+  border-top: 0.3px dashed #008bff;
+  color: #black;
+  white-space: pre-wrap;
 
   @media (max-width: 1280px) {
     width: 40rem;
@@ -922,6 +925,10 @@ const PaginationButton = styled.button`
   &:hover {
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3); /* 호버 시 음영 효과 변경 */
   }
+`;
+
+const StyledLink = styled(Link)`
+  text-decoration: none;
 `;
 
 const MusicInfo = () => {
@@ -1290,11 +1297,13 @@ const MusicInfo = () => {
 
                           <CoperDetail02>
                             <LikeBox>
-                              <Link to={`/music-info/${item.musicDTO.id}`}>
+                              <StyledLink
+                                to={`/music-info/${item.musicDTO.id}`}
+                              >
                                 <CoperName>
                                   {item.userResDto.userNickname}
                                 </CoperName>
-                              </Link>
+                              </StyledLink>
                             </LikeBox>
                           </CoperDetail02>
                         </CoperDetail>

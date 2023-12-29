@@ -14,7 +14,7 @@ const WaveformContainer = styled.div`
   width: 100%;
   background: transparent;
   // gap: 2rem;
-  // border: 1px solid red;
+  border: 1px solid red;
 `;
 
 // Wave 스타일 컴포넌트를 정의합니다.
@@ -71,12 +71,12 @@ class Waveform extends Component {
     }
   }
 
-  componentDidUpdate(prevProps) {
-    // 외부로부터 전달된 음악 파일이 변경되면 새로 로드합니다.
-    if (prevProps.music !== this.props.music) {
-      this.loadMusic(this.props.music);
-    }
-  }
+  // componentDidUpdate(prevProps) {
+  //   // 외부로부터 전달된 음악 파일이 변경되면 새로 로드합니다.
+  //   if (prevProps.music !== this.props.music) {
+  //     this.loadMusic(this.props.music);
+  //   }
+  // }
 
   initializeWaveSurfer = () => {
     const options = {
@@ -132,7 +132,7 @@ class Waveform extends Component {
         <Wave id="waveform" ref={(ref) => (this.waveformRef = ref)} />
 
         {/* 오디오 트랙을 설정합니다. */}
-        <audio ref={this.audioRef} src={music} />
+        {/* <audio ref={this.audioRef} src={music} /> */}
         {/* 재생 시간을 나타내는 부분입니다. */}
       </WaveformContainer>
     );

@@ -19,7 +19,7 @@ const SingList = styled.div`
 
 const PostSlideContainer = styled.div`
   width: 100%;
-  height: 30rem;
+  height: 40rem;
   display: flex;
   position: relative;
   flex-direction: row;
@@ -31,24 +31,22 @@ const PostSlideContainer = styled.div`
 const SingerPost = styled.div`
   box-sizing: border-box;
   width: 40rem;
-  height: 30rem;
+  height: 40rem;
   justify-content: center;
   display: flex;
   flex-direction: row;
-  animation: slide 5s linear infinite;
+  animation: slide linear infinite;
   position: relative;
   color: white;
 
   @media (max-width: 1280px) {
-    width: 100rem;
+    width: 40rem;
   }
 
   @media (max-width: 768px) {
-    width: 30rem;
+    width: 40rem;
   }
 `;
-
-const slide = keyframes`0% { transform: translateX(0); } 100% { transform: translateX(-100%); }`;
 
 const SingerPostImg = styled.img`
   width: 140rem;
@@ -176,6 +174,8 @@ const ListNavbar = styled.div`
 
   @media (max-width: 768px) {
     width: 38rem;
+    height: 6rem;
+    gap: 1rem;
   }
 `;
 
@@ -224,7 +224,7 @@ const MusicCategory01 = styled.div`
   }
 
   @media (max-width: 768px) {
-    font-size: 1.2rem;
+    font-size: 1rem;
     font-weight: 700;
   }
 `;
@@ -273,7 +273,7 @@ const MusicCategory02 = styled.div`
   }
 
   @media (max-width: 768px) {
-    font-size: 1.2rem;
+    font-size: 0.9rem;
     font-weight: 700;
   }
 `;
@@ -322,7 +322,7 @@ const MusicCategory03 = styled.div`
   }
 
   @media (max-width: 768px) {
-    font-size: 1.2rem;
+    font-size: 0.9rem;
     font-weight: 700;
   }
 `;
@@ -371,7 +371,7 @@ const MusicCategory04 = styled.div`
   }
 
   @media (max-width: 768px) {
-    font-size: 1.2rem;
+    font-size: 0.9rem;
     font-weight: 700;
   }
 `;
@@ -420,7 +420,56 @@ const MusicCategory05 = styled.div`
   }
 
   @media (max-width: 768px) {
-    font-size: 1.1rem;
+    font-size: 0.8rem;
+    font-weight: 700;
+  }
+`;
+
+const MusicCategory06 = styled.div`
+  width: 15rem;
+  height: 5.5rem;
+  display: flex;
+  position: relative;
+  flex-direction: row;
+  background-color: none;
+  color: #ffffff;
+  font-size: 2.6rem;
+  font-weight: 700;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden; /* 텍스트 밑으로 확장되지 않도록 오버플로우 제어 */
+
+  /* 호버 효과 스타일 */
+  &:hover {
+    color: white; /* 호버 시 텍스트 색상 변경 */
+    cursor: pointer; /* 호버 시 마우스 커서 변경 */
+    text-decoration: none; /* 밑줄 제거 */
+  }
+
+  &:before,
+  &:after {
+    content: "";
+    position: absolute;
+    width: 0%; /* 초기에는 화면의 절반만큼의 너비를 가짐 */
+    height: 2px; /* 밑줄 높이 */
+    bottom: 0;
+    background-color: #ffffff; /* 밑줄 색상 */
+    transition: width 0.3s ease; /* 변화 시 애니메이션 */
+  }
+
+  &:hover:before,
+  &:hover:after {
+    width: 100%; /* 호버 시 전체 너비로 확장 */
+    transition: width 0.3s ease; /* 변화 시 애니메이션 */
+  }
+
+  @media (max-width: 1280px) {
+    font-size: 2.2rem;
+    font-weight: 700;
+  }
+
+  @media (max-width: 768px) {
+    font-size: 0.9rem;
     font-weight: 700;
   }
 `;
@@ -918,7 +967,6 @@ const MusicList = () => {
         const promoImageUrls = response.data.map(
           (item) => item.musicDTO.thumbnailImage
         );
-        setPromoImages(promoImageUrls); //이미지 뽑기.
 
         const randomImages = getRandomImage(promoImageUrls);
         setPromoImages(randomImages); //랜덤으로 이미지 뽑기.
@@ -932,7 +980,7 @@ const MusicList = () => {
 
   //랜덤으로 이미지 뽑기.
   const getRandomImage = (images) => {
-    const shuffledImages = [...images].sort(() => 0.5 - Math.random());
+    const shuffledImages = [...images].sort(() => 1.5 - Math.random());
     return shuffledImages.slice(0, 11);
   };
 
@@ -940,10 +988,10 @@ const MusicList = () => {
   useEffect(() => {
     const timer = setInterval(() => {
       setCurrentIndex((prevIndex) => (prevIndex + 1) % promoImages.length);
-    }, 2000);
+    }, 8000);
 
     return () => clearInterval(timer);
-  }, [promoImages.length]);
+  }, [currentIndex, promoImages.length]);
 
   //여기서부터 리스트 페이지네이션
   const [currentPage, setCurrentPage] = useState(1);
@@ -1040,11 +1088,11 @@ const MusicList = () => {
           ref={slideshow}
           style={{
             display: "flex",
-            // width: `${promoImages.length * 100}%`, // 전체 이미지 너비 설정
+            width: `${promoImages.length * 100}%`, // 전체 이미지 너비 설정
             transform: `translateX(-${
               currentIndex * (100 / promoImages.length)
             }%)`, // 현재 이미지의 위치 계산
-            transition: "transform 10s ease-in-out", // 슬라이드 애니메이션 효과
+            transition: "transform 20s ease-in-out", // 슬라이드 애니메이션 효과
           }}
         >
           {promoImages.map((image, index) => (
@@ -1101,6 +1149,9 @@ const MusicList = () => {
             <MusicCategory05 onClick={() => handleGenreClick("포크/블루스")}>
               포크/블루스
             </MusicCategory05>
+            <MusicCategory06 onClick={() => handleGenreClick("어쿠스틱")}>
+              어쿠스틱
+            </MusicCategory06>
           </ListNavbar>
 
           <ListContainer>{currentItems}</ListContainer>
