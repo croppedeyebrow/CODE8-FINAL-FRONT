@@ -3,7 +3,6 @@ import { useNavigate, useParams } from "react-router-dom";
 import styled, { keyframes } from "styled-components";
 import SearchBox from "../../component/musicList/SearchBox";
 import Searchicon from "../../images/SearchIcon.png";
-import Waveform from "../../component/musicList/MusicPlayer";
 import { Link } from "react-router-dom";
 import MusicAxiosApi from "../../axios/MusicAxios";
 
@@ -53,7 +52,7 @@ const SingerPostImg = styled.img`
   height: 30rem;
   display: flex;
   position: relative;
-  border: 0.05rem solid #008bff;
+
   object-fit: cover;
   overflow: hidden;
   border-radius: 4rem;
@@ -583,7 +582,7 @@ const SongName = styled.div`
     content: "";
     position: absolute;
     width: 0%; /* 초기에는 화면의 절반만큼의 너비를 가짐 */
-    height: 0.8rem; /* 밑줄 높이 */
+    height: 0.1rem; /* 밑줄 높이 */
     bottom: 0;
     background-color: #008bff; /* 밑줄 색상 */
     transition: width 0.3s ease; /* 변화 시 애니메이션 */
@@ -850,6 +849,7 @@ const RegistInfo = styled.div`
   height: 4rem;
   font-size: 3rem;
   font-weight: 700;
+  margin-bottom: 1rem;
 
   @media (max-width: 1280px) {
     font-size: 2.5rem;
@@ -880,6 +880,7 @@ const RegistButton = styled.button`
     inset -1px -1px 5px #008bff;
   transition: all 0.1s;
 overflow: hidden;
+margin-bottom: 2rem;
 
   &:hover {
     box-shadow: 1px 1px 15px #117bff, -1px -1px 15px #117bff, inset 1px 1px 5px #126bff,
@@ -1045,11 +1046,7 @@ const MusicList = () => {
             <SingerName>{`by : ${item.userResDto.userNickname}`}</SingerName>
           </MusicDet>
           <MusicPlaySet>
-            <audio
-              // music={musicFiles[(startIndex + index) % musicFiles.length]}
-              controls
-              src={item.musicDTO.musicFile}
-            />
+            <audio controls src={item.musicDTO.musicFile} />
           </MusicPlaySet>
           <MusicTag>{item.musicDTO.genre}</MusicTag>
           <PublishDay>{`발매일 : ${item.musicDTO.releaseDate}`}</PublishDay>
@@ -1126,7 +1123,7 @@ const MusicList = () => {
         </SearchBarBox>
 
         <Registzone>
-          <RegistInfo>당신의 음악을 세상에 알려주세요.!</RegistInfo>
+          <RegistInfo>이제, 당신의 음악이 세상에 알려질 순간 !</RegistInfo>
           <StyledLink to={`/music-regist`}>
             <RegistButton>등록하기</RegistButton>
           </StyledLink>
