@@ -931,6 +931,13 @@ const StyledLink = styled(Link)`
   text-decoration: none;
 `;
 
+const ButtonArea = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+`;
+
 const MusicInfo = () => {
   const { id } = useParams();
   console.log("ID:", id); // id 값 확인
@@ -1241,12 +1248,23 @@ const MusicInfo = () => {
                 </BuyBox>
                 {modalOpen && (
                   <ModalComponent>
-                    <h2 style={{ textAlign: "center" }}>음악 구매</h2>
+                    <h2 style={{ textAlign: "center", fontWeight: "bold" }}>
+                      이 가수의 음악 감성을 <br /> 함께 하시겠습니까?
+                    </h2>
                     <p style={{ textAlign: "center", fontWeight: "bold" }}>
-                      해당 음악 구매시 <br /> 100포인트가 차감됩니다.
+                      확인 버튼 클릭시 <br /> 100포인트로 가수를 응원합니다.
                     </p>
-                    <button onClick={handleConfirm}>확인</button>
-                    <button onClick={handleCancel}>취소</button>
+                    <ButtonArea>
+                      <button
+                        style={{
+                          marginRight: "1rem",
+                        }}
+                        onClick={handleConfirm}
+                      >
+                        확인
+                      </button>
+                      <button onClick={handleCancel}>취소</button>
+                    </ButtonArea>
                   </ModalComponent>
                 )}
 
